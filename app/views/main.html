@@ -1,0 +1,30 @@
+<div class="row marketing">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Datei</th>
+            <th>Offline</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="file in pdfFiles">
+            <td>
+                <span ng-hide="file.localURL">
+                    <a ng-href="{{file.webURL}}">{{file.filename}}</a>
+                </span>
+                <span ng-show="file.localURL">
+                    <a ng-href="{{file.localURL}}">{{file.filename}}</a> (stored locally)
+                </span>
+            </td>
+            <td>
+                <div class="btn btn-primary" ng-disabled="file.localURL" ng-click="pdfDownload(file)">
+                    <i class="fa fa-cloud-download"></i> Make available Offline
+                </div>
+                <div class="btn btn-danger" ng-disabled="!file.localURL" ng-click="deleteLocal(file)">
+                    <i class="fa fa-times-circle"></i> Delete local copy
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
