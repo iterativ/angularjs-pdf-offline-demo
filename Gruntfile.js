@@ -361,8 +361,7 @@ module.exports = function (grunt) {
                             'views/{,*/}*.html',
                             'images/{,*/}*.{webp}',
                             'fonts/*',
-                            'pdf/*',
-                            'listpdf.json'
+                            'pdf/*'
                         ]
                     },
                     {
@@ -439,12 +438,23 @@ module.exports = function (grunt) {
                 },
                 src: [
                     'views/*.html',
-                    'fonts/*.*'
                 ],
                 dest: '<%= yeoman.dist %>/manifest.appcache'
             }
         }
     });
+
+    // New task for flask server
+    // http://thomassileo.com/blog/2013/12/12/using-yeoman-with-flask/
+    grunt.registerTask('flask', 'Run flask server.', function () {
+        var spawn = require('child_process').spawn;
+        grunt.log.writeln('Starting Flak development server.');
+        // stdio: 'inherit' let us see flask output in grunt
+        var PIPE = {stdio: 'inherit'};
+        process.env.FLASK_YEOMAN_DEBUG = 1;
+        spawn('python', ['pythonsrc/server.py'], PIPE);
+    });
+
 
     grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
         if (target === 'dist') {
@@ -455,7 +465,7 @@ module.exports = function (grunt) {
             'clean:server',
             'concurrent:server',
             'autoprefixer',
-            'connect:livereload',
+            'flask',
             'watch'
         ]);
     });

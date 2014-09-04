@@ -1,0 +1,5 @@
+-r base.pip
+
+# deplyoment
+-e git://github.com/iterativ/deployit.git@ubuntu1204#egg=deployit
+    

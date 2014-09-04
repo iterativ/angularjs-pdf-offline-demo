@@ -3,7 +3,7 @@
 angular.module('pdfofflineApp').factory('PdfFileService', function PdfFileService($q, $http, $localForage) {
 
     var getOnlinePdfFileNames = function() {
-        return $http.get('/listpdf.json').then(function(response) {
+        return $http.get('/listpdf').then(function(response) {
             var pdfFileList = response.data.files;
 
             // store the fetched pdf list locally so that we can access the list, when we are offline

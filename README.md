@@ -7,13 +7,18 @@ This repository holds the source code for the PDF-Offline demo application hoste
 
 ## How to run
 
-This application is based on the Yeoman [AngularJS generator](https://github.com/yeoman/generator-angular)
+This application uses the python flask server as a backend. In the frontend the AngularJS library is used.
+You need to execute the following steps to make the sample application work on your machine:
+
+1. Install the needed python libraries:
     
-1. Install the grunt and bower dependencies:
+    > pip install -r env/dev/dev.pip
+    
+2. Install the grunt and bower dependencies:
 
     > npm install
     > bower install
     
-2. Run the local flask server:
+3. Run the local flask server:
 
     > grunt serve
